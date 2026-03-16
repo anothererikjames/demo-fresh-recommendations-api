@@ -1,0 +1,21 @@
+{
+  "info": {
+    "name": "demo-fresh-recommendations-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List Recommendations",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/recommendations"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8083"
+    }
+  ]
+}
