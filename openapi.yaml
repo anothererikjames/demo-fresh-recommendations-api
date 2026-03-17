@@ -1,11 +1,325 @@
 openapi: 3.0.3
 info:
-  title: Demo Fresh Recommendations API
+  title: Fresh Recommendations API
+  description: API for managing recommendations, models, and customer segments.
   version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
 paths:
   /recommendations:
     get:
       summary: List recommendations
+      operationId: listRecommendations
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+          description: Filter recommendations by user/customer ID
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
       responses:
-        '200':
-          description: OK
+        "200":
+          description: A list of recommendations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Recommendation"
+                  total:
+                    type: integer
+                    example: 250
+    post:
+      summary: Generate recommendations
+      operationId: createRecommendation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RecommendationCreate"
+      responses:
+        "201":
+          description: Recommendations generated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recommendation"
+        "400":
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /recommendations/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: rec_001
+    get:
+      summary: Get a recommendation by ID
+      operationId: getRecommendation
+      responses:
+        "200":
+          description: Recommendation details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Recommendation"
+        "404":
+          description: Recommendation not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /models:
+    get:
+      summary: List models
+      operationId: listModels
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, training, deprecated]
+          description: Filter by model status
+      responses:
+        "200":
+          description: A list of models
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Model"
+    post:
+      summary: Create a model
+      operationId: createModel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelCreate"
+      responses:
+        "201":
+          description: Model created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+  /models/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: mdl_v3
+    get:
+      summary: Get a model by ID
+      operationId: getModel
+      responses:
+        "200":
+          description: Model details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+        "404":
+          description: Model not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /segments:
+    get:
+      summary: List customer segments
+      operationId: listSegments
+      responses:
+        "200":
+          description: A list of customer segments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Segment"
+    post:
+      summary: Create a customer segment
+      operationId: createSegment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SegmentCreate"
+      responses:
+        "201":
+          description: Segment created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Segment"
+  /segments/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: seg_premium
+    get:
+      summary: Get a segment by ID
+      operationId: getSegment
+      responses:
+        "200":
+          description: Segment details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Segment"
+        "404":
+          description: Segment not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Recommendation:
+      type: object
+      properties:
+        id:
+          type: string
+          example: rec_001
+        customerId:
+          type: string
+          example: cust_001
+        productId:
+          type: string
+          example: prod_555
+        score:
+          type: number
+          format: double
+          example: 0.92
+        reason:
+          type: string
+          example: Frequently bought together with items in cart
+        createdAt:
+          type: string
+          format: date-time
+          example: "2026-03-17T08:00:00Z"
+      required: [id, customerId, productId, score, reason]
+    RecommendationCreate:
+      type: object
+      properties:
+        customerId:
+          type: string
+          example: cust_001
+        modelId:
+          type: string
+          example: mdl_v3
+        maxResults:
+          type: integer
+          example: 10
+      required: [customerId]
+    Model:
+      type: object
+      properties:
+        id:
+          type: string
+          example: mdl_v3
+        name:
+          type: string
+          example: Collaborative Filtering v3
+        version:
+          type: string
+          example: "3.1.0"
+        accuracy:
+          type: number
+          format: double
+          example: 0.89
+        status:
+          type: string
+          enum: [active, training, deprecated]
+          example: active
+        createdAt:
+          type: string
+          format: date-time
+          example: "2026-02-01T00:00:00Z"
+      required: [id, name, version, accuracy, status]
+    ModelCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Collaborative Filtering v3
+        version:
+          type: string
+          example: "3.1.0"
+      required: [name, version]
+    Segment:
+      type: object
+      properties:
+        id:
+          type: string
+          example: seg_premium
+        name:
+          type: string
+          example: Premium Shoppers
+        customerCount:
+          type: integer
+          example: 1250
+        avgOrderValue:
+          type: number
+          format: double
+          example: 245.50
+      required: [id, name, customerCount, avgOrderValue]
+    SegmentCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Premium Shoppers
+        criteria:
+          type: object
+          properties:
+            minOrderValue:
+              type: number
+              format: double
+              example: 100.00
+            minOrderCount:
+              type: integer
+              example: 5
+      required: [name]
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 404
+        message:
+          type: string
+          example: Resource not found
