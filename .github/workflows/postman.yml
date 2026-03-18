@@ -24,7 +24,7 @@ jobs:
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
       - name: Run Collection Tests
-        run: postman collection run 52274286-f1b23f60-097b-43c5-beec-770898f01818 --env-var "baseUrl=http://localhost:3000"
+        run: postman collection run 52274286-1913d463-abbb-4171-bd03-ea0813bc7407 --env-var "baseUrl=http://localhost:3000"
 
   governance:
     runs-on: ubuntu-latest
