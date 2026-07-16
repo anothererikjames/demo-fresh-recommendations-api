@@ -53,11 +53,11 @@ jobs:
           contract-collection-id: ${{ steps.bootstrap.outputs.contract-collection-id }}
           spec-id: ${{ steps.bootstrap.outputs.spec-id }}
           spec-path: index.yaml
-          mock-url: https://6577bd6e-3388-432a-af52-0050283b0c02.mock.pstmn.io
+          mock-url: https://3593624b-b273-49ce-b137-5ef2ff511d0e.mock.pstmn.io
           monitor-id: 1f1815f6-9892-4d70-a0dd-581383e20e0f
           environments-json: '["prod","stage"]'
           environment-uids-json: '{"prod":"56692411-c75ebd29-3580-4867-a313-d9fda077b532","stage":"56692411-39ebe9a5-eb57-41e4-9232-311cfc5e985f"}'
-          env-runtime-urls-json: '{"prod":"https://6577bd6e-3388-432a-af52-0050283b0c02.mock.pstmn.io","stage":"https://6577bd6e-3388-432a-af52-0050283b0c02.mock.pstmn.io"}'
+          env-runtime-urls-json: '{"prod":"https://3593624b-b273-49ce-b137-5ef2ff511d0e.mock.pstmn.io","stage":"https://3593624b-b273-49ce-b137-5ef2ff511d0e.mock.pstmn.io"}'
           system-env-map-json: '{"prod":"019db120-703b-7dd7-9416-75a588f130d0","stage":"019db122-35e6-7ccf-b965-81a8b4236d95"}'
           monitor-type: cloud
           monitor-cron: ''
