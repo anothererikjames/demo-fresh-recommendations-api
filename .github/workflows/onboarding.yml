@@ -22,6 +22,11 @@ jobs:
         uses: postman-cs/postman-bootstrap-action@v2.9.4
         with:
           project-name: fresh-recommendations
+          workspace-id: 86b483eb-dc09-4c2b-8e28-2fecd2b756b5
+          spec-id: 56884112-db5a-485d-b45b-ff268b92697f
+          baseline-collection-id: 56692411-78aa7e32-42b3-4bd2-a9be-5726f098437d
+          smoke-collection-id: 56692411-b1a47434-a5da-4a3c-b487-d943d0d51f7b
+          contract-collection-id: 56692411-b6b7bfbe-2f37-456d-855b-cd1fbd1e7af9
           domain: commerce
           domain-code: FC
           spec-path: index.yaml
@@ -48,7 +53,11 @@ jobs:
           contract-collection-id: ${{ steps.bootstrap.outputs.contract-collection-id }}
           spec-id: ${{ steps.bootstrap.outputs.spec-id }}
           spec-path: index.yaml
+          mock-url: https://6577bd6e-3388-432a-af52-0050283b0c02.mock.pstmn.io
+          monitor-id: 1f1815f6-9892-4d70-a0dd-581383e20e0f
           environments-json: '["prod","stage"]'
+          environment-uids-json: '{"prod":"56692411-c75ebd29-3580-4867-a313-d9fda077b532","stage":"56692411-39ebe9a5-eb57-41e4-9232-311cfc5e985f"}'
+          env-runtime-urls-json: '{"prod":"https://6577bd6e-3388-432a-af52-0050283b0c02.mock.pstmn.io","stage":"https://6577bd6e-3388-432a-af52-0050283b0c02.mock.pstmn.io"}'
           system-env-map-json: '{"prod":"019db120-703b-7dd7-9416-75a588f130d0","stage":"019db122-35e6-7ccf-b965-81a8b4236d95"}'
           monitor-type: cloud
           monitor-cron: ''
