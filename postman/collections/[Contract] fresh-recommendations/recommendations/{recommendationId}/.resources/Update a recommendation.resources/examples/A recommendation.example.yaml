@@ -1,0 +1,52 @@
+$kind: http-example
+id: 27a16548-1c20-4a30-a692-f0c2494f7d66
+request:
+  url: "{{baseUrl}}/recommendations/:recommendationId"
+  method: PATCH
+  headers:
+    - key: Content-Type
+      value: application/json
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    - key: recommendationId
+      value: rec-101
+      description: Unique recommendation identifier
+  body:
+    type: json
+    content: |-
+      {
+        "status": "active",
+        "customerId": "cus-101",
+        "itemIds": [
+          "sku-101",
+          "sku-102"
+        ],
+        "strategy": "personalized",
+        "confidence": 0.92
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "recommendationId": "rec-101",
+        "status": "active",
+        "customerId": "cus-101",
+        "itemIds": [
+          "sku-101",
+          "sku-102"
+        ],
+        "strategy": "personalized",
+        "createdAt": "2026-07-16T20:00:00Z",
+        "updatedAt": "2026-07-16T20:00:00Z",
+        "confidence": 0.92
+      }
+order: 1000

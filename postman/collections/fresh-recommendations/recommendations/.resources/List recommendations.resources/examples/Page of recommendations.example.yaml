@@ -1,0 +1,59 @@
+$kind: http-example
+id: 306d7521-0977-4fd1-9b22-ad5cdd541bc7
+request:
+  url: "{{baseUrl}}/recommendations?limit=20&cursor=string&status=active"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  queryParams:
+    limit: "20"
+    cursor: string
+    status: active
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "data": [
+          {
+            "recommendationId": "rec-101",
+            "status": "active",
+            "customerId": "cus-101",
+            "itemIds": [
+              "sku-101",
+              "sku-102"
+            ],
+            "strategy": "personalized",
+            "createdAt": "2026-07-16T20:00:00Z",
+            "updatedAt": "2026-07-16T20:00:00Z",
+            "confidence": 0.92
+          },
+          {
+            "recommendationId": "rec-101",
+            "status": "active",
+            "customerId": "cus-101",
+            "itemIds": [
+              "sku-101",
+              "sku-102"
+            ],
+            "strategy": "personalized",
+            "createdAt": "2026-07-16T20:00:00Z",
+            "updatedAt": "2026-07-16T20:00:00Z",
+            "confidence": 0.92
+          }
+        ],
+        "meta": {
+          "limit": 20,
+          "count": 1,
+          "nextCursor": null
+        }
+      }
+order: 1000

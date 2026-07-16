@@ -1,0 +1,27 @@
+$kind: http-request
+id: ac94f5e6-da4b-4ccb-9f27-77b85e7c13a8
+url: "{{baseUrl}}/recommendations/:recommendationId"
+method: PATCH
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  - key: recommendationId
+    value: rec-101
+    description: Unique recommendation identifier
+body:
+  type: json
+  content: |-
+    {
+      "status": "active",
+      "customerId": "cus-101",
+      "itemIds": [
+        "sku-101",
+        "sku-102"
+      ],
+      "strategy": "personalized",
+      "confidence": 0.92
+    }
+settings: {}
+examples: ./.resources/Update a recommendation.resources/examples
+order: 2000

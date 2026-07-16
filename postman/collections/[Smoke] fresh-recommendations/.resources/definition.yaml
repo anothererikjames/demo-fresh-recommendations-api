@@ -1,0 +1,16 @@
+$kind: collection
+id: b1a47434-a5da-4a3c-b487-d943d0d51f7b
+description: |-
+  Production-shaped demo service for the Fresh Commerce API Catalog. Manages recommendations with typed contracts, pagination, health checks, and consistent errors.
+
+  Contact Support:
+   Name: Fresh Commerce Platform Team
+   Email: platform@example.com
+variables:
+  baseUrl: https://recommendations.api.fresh-commerce.test
+auth:
+  - id: 0f2931d4-28df-4c29-bc45-0eff22daa107
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{bearerToken}}"

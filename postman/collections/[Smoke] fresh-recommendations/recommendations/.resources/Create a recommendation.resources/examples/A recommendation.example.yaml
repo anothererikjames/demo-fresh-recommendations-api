@@ -1,0 +1,48 @@
+$kind: http-example
+id: 2b5cf3a8-72f8-4a34-8a3d-65ed4aebd6e5
+request:
+  url: "{{baseUrl}}/recommendations"
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  body:
+    type: json
+    content: |-
+      {
+        "customerId": "cus-101",
+        "itemIds": [
+          "sku-101",
+          "sku-102"
+        ],
+        "strategy": "personalized",
+        "status": "active",
+        "confidence": 0.92
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "recommendationId": "rec-101",
+        "status": "active",
+        "customerId": "cus-101",
+        "itemIds": [
+          "sku-101",
+          "sku-102"
+        ],
+        "strategy": "personalized",
+        "createdAt": "2026-07-16T20:00:00Z",
+        "updatedAt": "2026-07-16T20:00:00Z",
+        "confidence": 0.92
+      }
+order: 1000

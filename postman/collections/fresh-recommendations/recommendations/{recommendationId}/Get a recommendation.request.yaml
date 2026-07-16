@@ -1,0 +1,13 @@
+$kind: http-request
+id: 91f6a6b9-8e66-4a4b-8e31-27fc9a830c79
+url: "{{baseUrl}}/recommendations/:recommendationId"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  - key: recommendationId
+    value: rec-101
+    description: Unique recommendation identifier
+settings: {}
+examples: ./.resources/Get a recommendation.resources/examples
+order: 1000

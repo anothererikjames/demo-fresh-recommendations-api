@@ -1,0 +1,9 @@
+$kind: http-request
+id: 24871ee9-9c4b-4d43-9ccc-f38ef3092af3
+url: "{{baseUrl}}/health"
+method: GET
+headers:
+  Accept: application/json
+settings: {}
+examples: ./.resources/Check service health.resources/examples
+order: 1000

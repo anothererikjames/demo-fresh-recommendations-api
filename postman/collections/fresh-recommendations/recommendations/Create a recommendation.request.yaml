@@ -1,0 +1,23 @@
+$kind: http-request
+id: 38651729-b3fb-460e-ad67-dba849d45962
+url: "{{baseUrl}}/recommendations"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "customerId": "cus-101",
+      "itemIds": [
+        "sku-101",
+        "sku-102"
+      ],
+      "strategy": "personalized",
+      "status": "active",
+      "confidence": 0.92
+    }
+settings: {}
+examples: ./.resources/Create a recommendation.resources/examples
+order: 3000

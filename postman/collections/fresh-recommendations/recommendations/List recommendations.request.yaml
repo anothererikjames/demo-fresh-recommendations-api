@@ -1,0 +1,13 @@
+$kind: http-request
+id: 4861a5fd-7f04-439c-9cd8-730f01833b1c
+url: "{{baseUrl}}/recommendations?limit=20&cursor=string&status=active"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  limit: "20"
+  cursor: string
+  status: active
+settings: {}
+examples: ./.resources/List recommendations.resources/examples
+order: 2000

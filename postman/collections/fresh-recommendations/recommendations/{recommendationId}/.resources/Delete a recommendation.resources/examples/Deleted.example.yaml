@@ -1,0 +1,20 @@
+$kind: http-example
+id: 48e78673-f780-42d4-99ca-fad0e2696781
+request:
+  url: "{{baseUrl}}/recommendations/:recommendationId"
+  method: DELETE
+  headers:
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    - key: recommendationId
+      value: rec-101
+      description: Unique recommendation identifier
+response:
+  statusCode: 204
+  statusText: No Content
+  body:
+    type: text
+    content: ""
+order: 1000

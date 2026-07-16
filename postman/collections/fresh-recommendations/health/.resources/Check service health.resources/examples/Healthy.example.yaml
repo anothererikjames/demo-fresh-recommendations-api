@@ -1,0 +1,25 @@
+$kind: http-example
+id: 7cd2eb7b-9d59-4eee-968a-a17c9ceddaa3
+request:
+  url: "{{baseUrl}}/health"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "status": "ok",
+        "service": "recommendations",
+        "version": "1.0.0"
+      }
+order: 1000

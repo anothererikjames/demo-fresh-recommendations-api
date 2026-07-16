@@ -1,0 +1,29 @@
+$kind: http-example
+id: 3781d4f1-0c59-475d-a62d-6d22b8e89c85
+request:
+  url: "{{baseUrl}}/recommendations/:recommendationId"
+  method: DELETE
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    - key: recommendationId
+      value: rec-101
+      description: Unique recommendation identifier
+response:
+  statusCode: 404
+  statusText: Not Found
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "code": "not_found",
+        "message": "The requested resource was not found",
+        "requestId": "req-9f2a"
+      }
+order: 3000

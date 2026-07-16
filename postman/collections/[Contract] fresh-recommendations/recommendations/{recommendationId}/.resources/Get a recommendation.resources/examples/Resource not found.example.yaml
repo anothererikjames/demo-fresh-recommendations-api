@@ -1,0 +1,29 @@
+$kind: http-example
+id: f8841521-bde1-4551-81e5-7aa068ab47e6
+request:
+  url: "{{baseUrl}}/recommendations/:recommendationId"
+  method: GET
+  headers:
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  pathVariables:
+    - key: recommendationId
+      value: rec-101
+      description: Unique recommendation identifier
+response:
+  statusCode: 404
+  statusText: Not Found
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "code": "not_found",
+        "message": "The requested resource was not found",
+        "requestId": "req-9f2a"
+      }
+order: 3000
