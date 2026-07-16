@@ -3,6 +3,7 @@ id: c6d16be5-40ba-49b8-9f0d-819b2b13a1f1
 url: "{{baseUrl}}/recommendations/:recommendationId"
 method: PATCH
 headers:
+  X-Mock-Response-Code: "200"
   Content-Type: application/json
   Accept: application/json
 pathVariables:

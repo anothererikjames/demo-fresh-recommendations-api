@@ -3,6 +3,7 @@ id: f1895057-7109-4e2d-b882-662577f14432
 url: "{{baseUrl}}/recommendations?limit=20&cursor=string&status=served"
 method: GET
 headers:
+  X-Mock-Response-Code: "200"
   Accept: application/json
 queryParams:
   limit: "20"

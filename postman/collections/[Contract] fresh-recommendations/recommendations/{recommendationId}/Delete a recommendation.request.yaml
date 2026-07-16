@@ -3,6 +3,7 @@ id: 96cf0948-e6f2-44bc-90de-f08a65f6a26a
 url: "{{baseUrl}}/recommendations/:recommendationId"
 method: DELETE
 headers:
+  X-Mock-Response-Code: "204"
   Accept: application/json
 pathVariables:
   - key: recommendationId

@@ -3,6 +3,7 @@ id: 38651729-b3fb-460e-ad67-dba849d45962
 url: "{{baseUrl}}/recommendations"
 method: POST
 headers:
+  X-Mock-Response-Code: "201"
   Content-Type: application/json
   Accept: application/json
 body:
