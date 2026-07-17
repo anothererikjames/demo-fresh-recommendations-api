@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-fresh-recommendations-api
+spec:
+  selector:
+    app: demo-fresh-recommendations-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-fresh-recommendations-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-fresh-recommendations-api
+  template:
+    metadata:
+      labels:
+        app: demo-fresh-recommendations-api
+    spec:
+      containers:
+        - name: demo-fresh-recommendations-api
+          image: demo-fresh-recommendations-api:catalog-v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 2
+            periodSeconds: 5
+        - name: postman-insights-agent
+          image: public.ecr.aws/postman/postman-insights-agent:latest
+          args:
+            - apidump
+            - --workspace-id
+            - 86b483eb-dc09-4c2b-8e28-2fecd2b756b5
+            - --system-env
+            - 019db120-703b-7dd7-9416-75a588f130d0
+            - --service-name
+            - fresh-recommendations
+            - --filter
+            - port 3000
+          env:
+            - name: POSTMAN_INSIGHTS_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: postman-agent-secrets
+                  key: postman-api-key
+          securityContext:
+            capabilities:
+              add:
+                - NET_RAW
+                - SYS_ADMIN
+                - SYS_PTRACE
